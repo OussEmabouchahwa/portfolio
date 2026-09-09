@@ -40,17 +40,34 @@ export const metadata: Metadata = {
     "Photography"
   ],
   authors: [{ name: "Oussema Bouchahwa" }],
+  icons: {
+    icon: [
+      { url: "/my photos/my logo offeciel.png", type: "image/png" },
+      { url: "/my photos/my logo.png", type: "image/png" }
+    ],
+    shortcut: "/my photos/my logo offeciel.png",
+    apple: "/my photos/my logo offeciel.png",
+  },
   openGraph: {
     title: "Oussema Bouchahwa — Software Engineer & Creative Technologist",
     description: "Bridging low-level architecture, high-level web systems, and visual storytelling.",
     type: "website",
     locale: "en_US",
     siteName: "Oussema Bouchahwa Portfolio",
+    images: [
+      {
+        url: "/my photos/my photo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Oussema Bouchahwa — Software Engineer & Creative Technologist"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Oussema Bouchahwa — Software Engineer & Creative Technologist",
     description: "Bridging low-level architecture, high-level web systems, and visual storytelling.",
+    images: ["/my photos/my photo.jpg"]
   }
 };
 
@@ -59,6 +76,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Oussema Bouchahwa",
   jobTitle: "Software Engineer & Creative Technologist",
+  image: "https://oussema-bouchahwa.dev/my%20photos/my%20photo.jpg",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Sfax",

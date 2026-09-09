@@ -85,28 +85,52 @@ async function main() {
   // 2. Experiences
   const experiences = [
     {
-      role: 'Full-Stack Software Engineering Intern',
-      company: 'Tech Solutions & Innovation Lab',
-      duration: '2024 — Present',
-      description: 'Engineered responsive web applications and backend microservices using Next.js, Node.js, and PostgreSQL. Reduced query response times by 35% through SQL index optimization and caching.',
-      skillsUsed: 'Next.js, TypeScript, PostgreSQL, Prisma, REST APIs, Git',
+      role: 'Engineering Cycle — Computer Science (Year 2)',
+      company: 'IPSAS Sfax',
+      duration: '2026 — Present',
+      description: 'Advanced software engineering curriculum covering system architecture, database modeling, algorithms, and distributed applications.',
+      skillsUsed: 'Java, SQL, System Architecture, C++',
       orderIndex: 1,
     },
     {
-      role: 'Multidisciplinary Creator & Developer',
-      company: 'Oussema Studio (Freelance)',
-      duration: '2022 — Present',
-      description: 'Designed and developed custom web platforms, brand identities, and visual assets for local and international clients. Delivered end-to-end products combining software design, UI/UX, and video direction.',
-      skillsUsed: 'Full-Stack Dev, UI/UX Design, Photography, Videography, Brand Design',
+      role: 'Engineering Internship',
+      company: 'LeadRTech — Sfax',
+      duration: 'Previous',
+      description: 'Engineering development workflow, full-stack web application development, and SQL query optimization.',
+      skillsUsed: 'Full-Stack, PostgreSQL, Web Engineering',
       orderIndex: 2,
     },
     {
-      role: 'Software Engineering Student',
-      company: 'Software Engineering University',
-      duration: '2022 — 2025',
-      description: 'Specializing in Software Architecture, Distributed Systems, Database Management, and Artificial Intelligence. Leading student engineering projects and technical workshops.',
-      skillsUsed: 'System Architecture, Java, C++, Python, SQL, Agile',
+      role: 'Mobile & Software Development Intern',
+      company: 'Viss Tunisie — Sfax',
+      duration: 'Previous',
+      description: 'Mobile software engineering, UI implementation, and client application development in an agile team.',
+      skillsUsed: 'Mobile Dev, Software Engineering, REST APIs',
       orderIndex: 3,
+    },
+    {
+      role: 'Full-Stack Software Developer & Visual Creator',
+      company: 'Route Insolite Travel Agency',
+      duration: 'Previous',
+      description: 'Engineered a complete multi-destination reservation management system. Also conducted client photography, produced travel promotional videos, and directed digital campaign visual assets.',
+      skillsUsed: 'Full-Stack, React, SQL, Photography, Video Editing',
+      orderIndex: 4,
+    },
+    {
+      role: 'Technician Diploma — Multimedia & Web Development',
+      company: 'ISET Djerba',
+      duration: 'Earlier',
+      description: 'Comprehensive foundation in web technology, graphic design, photography, video production, and user experience.',
+      skillsUsed: 'Web Dev, Photoshop, Photography, UI/UX Design',
+      orderIndex: 5,
+    },
+    {
+      role: 'Design Lead / Chef Design',
+      company: 'Club SOS Village (Engineering Cycle Year 1)',
+      duration: 'Leadership',
+      description: 'Led visual design direction, brand identity, and media campaign assets for community engineering initiatives.',
+      skillsUsed: 'Visual Design, Team Leadership, Brand Identity',
+      orderIndex: 6,
     }
   ]
 
@@ -115,63 +139,90 @@ async function main() {
   }
   console.log(`✅ Seeded ${experiences.length} experiences.`)
 
-  // 3. Certifications
+  // 3. Certifications (Real DataCamp & Official Certificates)
   const certs = [
     {
-      title: 'AWS Certified Cloud Practitioner',
-      issuer: 'Amazon Web Services (AWS)',
+      title: 'AI Engineer for Developers Associate',
+      issuer: 'DataCamp / Professional Badge',
       date: '2024',
-      credentialId: 'AWS-99201482',
-      credentialUrl: 'https://aws.amazon.com/verification',
-      imageUrl: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=400&q=80',
+      credentialId: 'SQA0018432953555',
+      credentialUrl: 'https://www.datacamp.com/statement-of-accomplishment/course/ai-engineer-for-developers',
+      imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80',
       orderIndex: 1,
     },
     {
-      title: 'Meta Full-Stack Developer Professional',
-      issuer: 'Meta (Coursera)',
-      date: '2023',
-      credentialId: 'META-FS-883192',
-      credentialUrl: 'https://coursera.org/verify/meta-fullstack',
-      imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80',
+      title: 'Intermediate Java',
+      issuer: 'DataCamp',
+      date: '2024',
+      credentialId: 'DC-JAVA-INT-8849',
+      credentialUrl: 'https://www.datacamp.com/statement-of-accomplishment/course/intermediate-java',
+      imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80',
       orderIndex: 2,
     },
     {
-      title: 'IBM Data Science Foundations',
-      issuer: 'IBM',
-      date: '2023',
-      credentialId: 'IBM-DS-774120',
-      credentialUrl: 'https://ibm.com/verify/datascience',
-      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80',
+      title: 'Introduction to Object-Oriented Programming in Java',
+      issuer: 'DataCamp',
+      date: '2024',
+      credentialId: 'DC-JAVA-OOP-4412',
+      credentialUrl: 'https://www.datacamp.com/statement-of-accomplishment/course/intro-to-oop-in-java',
+      imageUrl: null,
       orderIndex: 3,
+    },
+    {
+      title: 'Intermediate SQL',
+      issuer: 'DataCamp',
+      date: '2024',
+      credentialId: 'DC-SQL-INT-9921',
+      credentialUrl: 'https://www.datacamp.com/statement-of-accomplishment/course/intermediate-sql',
+      imageUrl: null,
+      orderIndex: 4,
+    },
+    {
+      title: 'DAX Data Analysis in Power BI',
+      issuer: 'DataCamp',
+      date: '2024',
+      credentialId: 'DC-PBI-DAX-7712',
+      credentialUrl: 'https://www.datacamp.com/statement-of-accomplishment/course/dax-in-power-bi',
+      imageUrl: null,
+      orderIndex: 5,
+    },
+    {
+      title: 'GitHub Foundations & Version Control',
+      issuer: 'GitHub / DataCamp',
+      date: '2024',
+      credentialId: 'GH-FOUND-33019',
+      credentialUrl: 'https://github.com/verify',
+      imageUrl: null,
+      orderIndex: 6,
     }
   ]
 
   for (const c of certs) {
     await prisma.certification.create({ data: c })
   }
-  console.log(`✅ Seeded ${certs.length} certifications.`)
+  console.log(`✅ Seeded ${certs.length} real certifications.`)
 
   // 4. Media Vault
   const mediaItems = [
     {
-      url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      category: 'Photography',
-      altText: 'Tech Hardware macro shot',
+      url: '/my photos/my photo.jpg',
+      category: 'Portraits',
+      altText: 'Oussema Bouchahwa Portrait',
     },
     {
-      url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-      category: 'AI Art',
-      altText: 'Abstract 3D digital gradient mesh',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80',
-      category: 'Videography',
-      altText: 'Cinematic camera rig on set',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+      url: '/my photos/my logo offeciel.png',
       category: 'Visual Design',
-      altText: 'Neon cybernetic poster composition',
+      altText: 'Official OB Brand Mark',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+      category: 'Photography',
+      altText: 'Sahara Expedition',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80',
+      category: 'Photography',
+      altText: 'Anniversary Session',
     }
   ]
 

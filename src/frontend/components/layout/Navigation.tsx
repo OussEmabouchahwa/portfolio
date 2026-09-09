@@ -44,8 +44,17 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity" aria-label="Go to homepage">
-            OB.
+          <Link href="/" className="flex items-center gap-3 group" aria-label="Go to homepage">
+            <div className="w-10 h-10 rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 flex items-center justify-center group-hover:border-cyan-400/60 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all duration-300">
+              <img
+                src="/my photos/my logo offeciel.png"
+                alt="Oussema Bouchahwa Logo"
+                className="w-full h-full object-contain p-1"
+              />
+            </div>
+            <span className="text-sm font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+              Oussema.dev
+            </span>
           </Link>
 
           {/* Desktop Nav */}

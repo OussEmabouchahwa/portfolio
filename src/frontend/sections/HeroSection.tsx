@@ -2,7 +2,7 @@
 
 /**
  * FRONTEND — Hero Section
- * Dual-layer Layout: Left narrative + Right HUD floating terminal & system metrics.
+ * Dual-layer Layout: Left narrative + Right Real Portrait Visual & HUD floating terminal & system metrics.
  */
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
@@ -141,10 +141,35 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Interactive Developer HUD Canvas */}
-        <div className="hero-meta lg:col-span-5 flex flex-col gap-5 justify-center">
+        {/* Right Section: Real Portrait + Floating Developer HUD Canvas */}
+        <div className="hero-meta lg:col-span-5 flex flex-col gap-6 justify-center relative">
+          {/* Oussema's Real Portrait Canvas */}
+          <div className="relative rounded-3xl overflow-hidden border border-neutral-800/80 bg-neutral-900/60 shadow-2xl group">
+            <div className="aspect-[4/5] relative overflow-hidden">
+              <img
+                src="/my photos/my photo.jpg"
+                alt="Oussema Bouchahwa"
+                className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)'
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80" />
+            </div>
+
+            {/* Overlaid Brand Identity Mark */}
+            <div className="absolute top-4 right-4 bg-neutral-950/80 border border-neutral-800 p-2 rounded-2xl backdrop-blur-md">
+              <img
+                src="/my photos/my logo offeciel.png"
+                alt="OB Logo"
+                className="w-8 h-8 object-contain"
+              />
+            </div>
+          </div>
+
           {/* Card 1: Live Terminal HUD */}
-          <div className="bg-neutral-950/90 border border-neutral-800 rounded-2xl p-5 shadow-2xl backdrop-blur-xl font-mono text-xs relative overflow-hidden group hover:border-neutral-700 transition-colors">
+          <div className="bg-neutral-950/90 border border-neutral-800 rounded-2xl p-5 shadow-2xl backdrop-blur-xl font-mono text-xs relative overflow-hidden group hover:border-cyan-500/50 transition-colors">
             <div className="flex items-center justify-between border-b border-neutral-800/80 pb-3 mb-3">
               <div className="flex items-center gap-2 text-neutral-400">
                 <Terminal className="w-4 h-4 text-cyan-400" />
@@ -157,9 +182,9 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="space-y-2 min-h-[80px] flex flex-col justify-center">
+            <div className="space-y-2 min-h-[60px] flex flex-col justify-center">
               <p className="text-neutral-500">// Real-time system telemetry</p>
-              <p className="text-cyan-300 transition-all duration-300">
+              <p className="text-cyan-300 transition-all duration-300 font-semibold">
                 {codeSnippets[typedIndex]}
               </p>
             </div>
