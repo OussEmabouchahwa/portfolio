@@ -34,17 +34,34 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Staggered hero text reveal
+      // Staggered character reveal for Name
       gsap.fromTo(
-        '.hero-line',
-        { yPercent: 100, opacity: 0 },
+        '.hero-char',
+        { yPercent: 120, opacity: 0, rotateX: -90, filter: 'blur(10px)' },
         {
           yPercent: 0,
           opacity: 1,
-          duration: 1.1,
-          stagger: 0.15,
-          ease: 'power4.out',
+          rotateX: 0,
+          filter: 'blur(0px)',
+          duration: 0.8,
+          stagger: 0.04,
+          ease: 'back.out(1.4)',
           delay: 0.2,
+        }
+      )
+
+      // Staggered word reveal for Title
+      gsap.fromTo(
+        '.hero-word',
+        { yPercent: 120, opacity: 0, filter: 'blur(8px)' },
+        {
+          yPercent: 0,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 0.9,
+          stagger: 0.1,
+          ease: 'power3.out',
+          delay: 0.7,
         }
       )
 
@@ -105,14 +122,23 @@ export default function HeroSection() {
 
           {/* Headline */}
           <div className="mb-6">
-            <div className="split-line">
-              <h1 className="hero-line text-[clamp(2.5rem,5.5vw,5.2rem)] font-bold tracking-tight leading-[1.05]">
-                Oussema Bouchahwa
-              </h1>
+            <div className="split-line flex flex-wrap" aria-label="Oussema Bouchahwa">
+              {"Oussema Bouchahwa".split('').map((char, i) => (
+                <span 
+                  key={i} 
+                  className={`hero-char inline-block text-[clamp(2.5rem,5.5vw,5.2rem)] font-bold tracking-tight leading-[1.05] ${char === ' ' ? 'w-[0.3em]' : ''}`}
+                >
+                  {char}
+                </span>
+              ))}
             </div>
-            <div className="split-line">
-              <h2 className="hero-line text-[clamp(1.8rem,3.8vw,3.5rem)] font-semibold tracking-tight leading-[1.1] text-neutral-400">
-                Software Engineer & <span className="text-white underline decoration-neutral-700 underline-offset-8">Creative Technologist</span>
+            <div className="split-line mt-2" aria-label="Software Engineer & Creative Technologist">
+              <h2 className="flex flex-wrap gap-x-3 text-[clamp(1.8rem,3.8vw,3.5rem)] font-semibold tracking-tight leading-[1.1] text-neutral-400">
+                {["Software", "Engineer", "&"].map((word, i) => (
+                  <span key={i} className="hero-word inline-block">{word}</span>
+                ))}
+                <span className="hero-word inline-block text-white underline decoration-neutral-700 underline-offset-8">Creative</span>
+                <span className="hero-word inline-block text-white underline decoration-neutral-700 underline-offset-8">Technologist</span>
               </h2>
             </div>
           </div>
@@ -147,7 +173,7 @@ export default function HeroSection() {
           <div className="relative rounded-3xl overflow-hidden border border-neutral-800/80 bg-neutral-900/60 shadow-2xl group">
             <div className="aspect-[4/5] relative overflow-hidden">
               <img
-                src="/my photos/my photo.jpg"
+                src="/my photos/my photo.png"
                 alt="Oussema Bouchahwa"
                 className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 style={{

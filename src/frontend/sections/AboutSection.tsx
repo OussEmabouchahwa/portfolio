@@ -56,6 +56,20 @@ export default function AboutSection() {
           scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
         }
       )
+
+      gsap.fromTo(
+        '.exec-line',
+        { yPercent: 100, rotateX: -30, opacity: 0, transformOrigin: "bottom center" },
+        {
+          yPercent: 0,
+          rotateX: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power4.out',
+          scrollTrigger: { trigger: '.exec-container', start: 'top 85%' }
+        }
+      )
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -89,11 +103,19 @@ export default function AboutSection() {
 
           <div className="about-reveal lg:col-span-5 flex flex-col justify-center bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-8 backdrop-blur-md">
             <p className="text-xs text-neutral-500 font-mono tracking-widest uppercase mb-4">// Executive Approach</p>
-            <div className="space-y-2">
-              <p className="text-2xl md:text-3xl font-bold text-white">Understand the Problem.</p>
-              <p className="text-2xl md:text-3xl font-bold text-neutral-500">Architect the Solution.</p>
-              <p className="text-2xl md:text-3xl font-bold text-neutral-600">Elevate the Design.</p>
-              <p className="text-2xl md:text-3xl font-bold text-neutral-700">Ship to Production.</p>
+            <div className="space-y-2 exec-container">
+              <div className="overflow-hidden">
+                <p className="exec-line text-2xl md:text-3xl font-bold text-white">Understand the Problem.</p>
+              </div>
+              <div className="overflow-hidden">
+                <p className="exec-line text-2xl md:text-3xl font-bold text-neutral-500">Architect the Solution.</p>
+              </div>
+              <div className="overflow-hidden">
+                <p className="exec-line text-2xl md:text-3xl font-bold text-neutral-600">Elevate the Design.</p>
+              </div>
+              <div className="overflow-hidden">
+                <p className="exec-line text-2xl md:text-3xl font-bold text-neutral-700">Ship to Production.</p>
+              </div>
             </div>
           </div>
         </div>
