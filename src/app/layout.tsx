@@ -40,14 +40,6 @@ export const metadata: Metadata = {
     "Photography"
   ],
   authors: [{ name: "Oussema Bouchahwa" }],
-  icons: {
-    icon: [
-      { url: "/my photos/my logo offeciel.png", type: "image/png" },
-      { url: "/my photos/my logo.png", type: "image/png" }
-    ],
-    shortcut: "/my photos/my logo offeciel.png",
-    apple: "/my photos/my logo offeciel.png",
-  },
   openGraph: {
     title: "Oussema Bouchahwa — Software Engineer & Creative Technologist",
     description: "Bridging low-level architecture, high-level web systems, and visual storytelling.",
