@@ -2,10 +2,9 @@
  * FRONTEND — Footer
  */
 const socials = [
-  { label: 'LinkedIn', href: '[ADD_LINKEDIN_URL]' },
-  { label: 'GitHub', href: '[ADD_GITHUB_URL]' },
-  { label: 'Instagram', href: '[ADD_INSTAGRAM_URL]' },
-  { label: 'Email', href: 'mailto:[ADD_EMAIL]' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bouchahwa-oussema-0216b3264/' },
+  { label: 'GitHub', href: 'https://github.com/OussEmabouchahwa' },
+  { label: 'Email', href: 'mailto:oussema.bouchahwa@ipsas.tn' },
 ]
 
 export default function Footer() {

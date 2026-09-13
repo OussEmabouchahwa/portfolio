@@ -90,18 +90,18 @@ export default function ContactSection() {
 
             <div className="space-y-4 font-mono text-sm">
               <a
-                href="mailto:oussema.bouchahwa@gmail.com"
+                href="mailto:oussema.bouchahwa@ipsas.tn"
                 className="flex items-center gap-3 text-neutral-400 hover:text-white transition-colors group w-fit"
                 data-cursor="view"
               >
                 <span className="w-9 h-9 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center group-hover:border-cyan-400 group-hover:text-cyan-400 transition-colors">
                   @
                 </span>
-                <span>oussema.bouchahwa@gmail.com</span>
+                <span>oussema.bouchahwa@ipsas.tn</span>
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/bouchahwa-oussema-0216b3264/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-neutral-400 hover:text-white transition-colors group w-fit"
@@ -114,7 +114,7 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="https://github.com"
+                href="https://github.com/OussEmabouchahwa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-neutral-400 hover:text-white transition-colors group w-fit"

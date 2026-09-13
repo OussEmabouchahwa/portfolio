@@ -7,10 +7,9 @@ export default function Footer() {
           <p className="text-neutral-500 mb-6">Software Engineering · Development · Visuals</p>
           
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">LinkedIn</a>
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">GitHub</a>
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">Instagram</a>
-            <a href="mailto:contact@example.com" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">Email</a>
+            <a href="https://www.linkedin.com/in/bouchahwa-oussema-0216b3264/" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">LinkedIn</a>
+            <a href="https://github.com/OussEmabouchahwa" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">GitHub</a>
+            <a href="mailto:oussema.bouchahwa@ipsas.tn" className="text-neutral-400 hover:text-white transition-colors" data-cursor="view">Email</a>
           </div>
         </div>
 

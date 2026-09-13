@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Oussema Bouchahwa Portfolio",
     images: [
       {
-        url: "/my photos/my photo.jpg",
+        url: "/my photos/my photo.png",
         width: 1200,
         height: 630,
         alt: "Oussema Bouchahwa — Software Engineer & Creative Technologist"
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Oussema Bouchahwa — Software Engineer & Creative Technologist",
     description: "Bridging low-level architecture, high-level web systems, and visual storytelling.",
-    images: ["/my photos/my photo.jpg"]
+    images: ["/my photos/my photo.png"]
   }
 };
 
@@ -68,12 +68,17 @@ const jsonLd = {
   "@type": "Person",
   name: "Oussema Bouchahwa",
   jobTitle: "Software Engineer & Creative Technologist",
-  image: "https://oussema-bouchahwa.dev/my%20photos/my%20photo.jpg",
+  image: "https://oussema-bouchahwa.dev/my%20photos/my%20photo.png",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Sfax",
     addressCountry: "Tunisia"
   },
+  email: "mailto:oussema.bouchahwa@ipsas.tn",
+  sameAs: [
+    "https://www.linkedin.com/in/bouchahwa-oussema-0216b3264/",
+    "https://github.com/OussEmabouchahwa"
+  ],
   knowsAbout: [
     "Software Engineering",
     "Web Development",
