@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createMedia, deleteMedia } from '@/backend/actions/media'
-import { createClient } from '@/utils/supabase/client'
+import { uploadToCloudinary } from '@/lib/uploadToCloudinary'
 import { Upload, Trash2, Image as ImageIcon, Link as LinkIcon, Plus, CheckCircle2 } from 'lucide-react'
 
 type MediaItem = {
@@ -23,63 +23,30 @@ export default function MediaVaultClient({ initialMedia }: { initialMedia: Media
 
   const categories = ['Photography', 'Video', 'Poster', 'AI Art', 'Couples', 'Travel', 'Events']
 
-  // Direct File Upload to Supabase Storage
+  // Direct File Upload to Cloudinary (Images & Videos)
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
 
     setUploading(true)
-    setStatusMsg('Uploading file to Supabase Storage...')
+    setStatusMsg('Téléchargement vers Cloudinary...')
 
     try {
-      const supabase = createClient()
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${fileExt}`
-      const filePath = `vault/${fileName}`
-
-      // Attempt to upload to 'media' bucket in Supabase Storage
-      const { data, error } = await supabase.storage.from('media').upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: true,
-      })
-
-      let publicUrl = ''
-
-      if (error) {
-        // Fallback: Read file as Base64 Data URL if bucket is unconfigured
-        const reader = new FileReader()
-        reader.onload = async () => {
-          publicUrl = reader.result as string
-          await createMedia({
-            url: publicUrl,
-            category,
-            altText: altInput || file.name,
-          })
-          setUploading(false)
-          setStatusMsg('Media added successfully!')
-          setTimeout(() => setStatusMsg(''), 3000)
-        }
-        reader.readAsDataURL(file)
-        return
-      }
-
-      // Get public URL from Supabase Storage
-      const { data: urlData } = supabase.storage.from('media').getPublicUrl(filePath)
-      publicUrl = urlData.publicUrl
+      const { url, resourceType } = await uploadToCloudinary(file)
 
       await createMedia({
-        url: publicUrl,
-        category,
+        url,
+        category: resourceType === 'video' ? 'Video' : category,
         altText: altInput || file.name,
       })
 
       setUploading(false)
-      setStatusMsg('File uploaded to Supabase Storage & published!')
+      setStatusMsg('✓ Média téléversé sur Cloudinary avec succès !')
       setTimeout(() => setStatusMsg(''), 3000)
-    } catch (err) {
-      console.error(err)
+    } catch (err: any) {
+      console.error('Cloudinary error:', err)
       setUploading(false)
-      setStatusMsg('Upload failed. Try URL input mode.')
+      setStatusMsg(err?.message || 'Échec du téléversement vers Cloudinary.')
     }
   }
 

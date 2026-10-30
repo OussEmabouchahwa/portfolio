@@ -15,18 +15,39 @@ import VisualsSection from '@/frontend/sections/VisualsSection'
 import ContactSection from '@/frontend/sections/ContactSection'
 
 type Project = {
-  id: string; title: string; description: string; techStack: string;
-  images: string; liveUrl: string | null; githubUrl: string | null;
-  client: string | null; year: string | null; isFeatured: boolean;
+  id: string
+  title: string
+  description: string
+  techStack: string
+  images: string
+  liveUrl: string | null
+  githubUrl: string | null
+  client: string | null
+  year: string | null
+  isFeatured: boolean
+  problem?: string | null
+  solution?: string | null
 }
+
 type Experience = {
-  id: string; role: string; company: string; duration: string;
-  description: string; skillsUsed: string; orderIndex: number;
+  id: string
+  role: string
+  company: string
+  duration: string
+  description: string
+  skillsUsed: string
+  orderIndex: number
 }
+
 type Certification = {
-  id: string; title: string; issuer: string; date: string;
-  credentialId: string | null; credentialUrl: string | null;
-  imageUrl: string | null; orderIndex: number;
+  id: string
+  title: string
+  issuer: string
+  date: string
+  credentialId: string | null
+  credentialUrl: string | null
+  imageUrl: string | null
+  orderIndex: number
 }
 
 interface HomeClientProps {

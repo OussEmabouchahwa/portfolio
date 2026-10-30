@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import { createCertification } from '@/backend/actions/certifications'
-import { createClient } from '@/utils/supabase/client'
+import { uploadToCloudinary } from '@/lib/uploadToCloudinary'
 import { Upload, Link as LinkIcon, Trash2, CheckCircle2, Loader2 } from 'lucide-react'
 
 export default function CertForm() {
@@ -20,51 +20,19 @@ export default function CertForm() {
 
     setImagePreview(URL.createObjectURL(file))
     setUploadingImage(true)
-    setUploadMsg('Uploading image...')
+    setUploadMsg('Téléchargement vers Cloudinary...')
 
     try {
-      const supabase = createClient()
-      const fileExt = file.name.split('.').pop()
-      const fileName = `cert-${Date.now()}-${Math.random().toString(36).substring(2, 7)}.${fileExt}`
-      const filePath = `certs/${fileName}`
-
-      const { error } = await supabase.storage.from('media').upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: true,
-      })
-
-      if (error) {
-        // Fallback: Base64
-        const reader = new FileReader()
-        reader.onload = () => {
-          const b64 = reader.result as string
-          setImageUrl(b64)
-          setImagePreview(b64)
-          setUploadingImage(false)
-          setUploadMsg('Photo ready!')
-          setTimeout(() => setUploadMsg(''), 2500)
-        }
-        reader.readAsDataURL(file)
-        return
-      }
-
-      const { data: urlData } = supabase.storage.from('media').getPublicUrl(filePath)
-      setImageUrl(urlData.publicUrl)
-      setImagePreview(urlData.publicUrl)
+      const { url } = await uploadToCloudinary(file)
+      setImageUrl(url)
+      setImagePreview(url)
       setUploadingImage(false)
-      setUploadMsg('Photo uploaded!')
+      setUploadMsg('✓ Photo téléversée sur Cloudinary !')
       setTimeout(() => setUploadMsg(''), 2500)
-    } catch {
-      const reader = new FileReader()
-      reader.onload = () => {
-        const b64 = reader.result as string
-        setImageUrl(b64)
-        setImagePreview(b64)
-        setUploadingImage(false)
-        setUploadMsg('Photo ready!')
-        setTimeout(() => setUploadMsg(''), 2500)
-      }
-      reader.readAsDataURL(file)
+    } catch (err: any) {
+      console.error('Cloudinary upload error:', err)
+      setUploadingImage(false)
+      setUploadMsg(err?.message || 'Erreur lors du téléversement Cloudinary')
     }
   }
 

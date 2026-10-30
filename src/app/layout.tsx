@@ -23,9 +23,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oussema Bouchahwa — Software Engineer & Creative Technologist",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: "Oussema Bouchahwa — Software Engineer & Visual Technologist",
   description:
-    "Portfolio of Oussema Bouchahwa: Software Engineering Student, Full-Stack Developer, and Creative Technologist from Sfax, Tunisia. Specializing in high-performance web applications, system architecture, data systems, and visual storytelling.",
+    "Portfolio of Oussema Bouchahwa: Software Engineering Student at IPSAS Sfax, Full-Stack Developer (PostgreSQL, Prisma, Next.js), and Visual Creator at Route Insolite.",
   keywords: [
     "Oussema Bouchahwa",
     "Software Engineer",

@@ -45,15 +45,15 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Go to homepage">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 flex items-center justify-center group-hover:border-cyan-400/60 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all duration-300">
+            <div className="h-10 px-2.5 py-1 rounded-xl border border-neutral-800 bg-neutral-900/80 flex items-center justify-center group-hover:border-accent-brand/60 group-hover:shadow-[0_0_15px_var(--accent-brand-20)] transition-all duration-300">
               <img
-                src="/my photos/my logo offeciel.png"
-                alt="Oussema Bouchahwa Logo"
-                className="w-full h-full object-contain p-1"
+                src="/my photos/bo-creation-logo.png"
+                alt="BO Creation Logo"
+                className="h-8 w-auto object-contain"
               />
             </div>
-            <span className="text-sm font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-              Oussema.dev
+            <span className="text-sm font-bold tracking-tight text-white group-hover:text-accent-brand transition-colors hidden sm:inline-block font-mono">
+              BO.creation
             </span>
           </Link>
 

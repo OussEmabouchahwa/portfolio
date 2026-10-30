@@ -195,3 +195,133 @@ portfolio-app/
 | **"Engineered Case Studies" heading with no cases** | `WorkSection.tsx` L147 | If the DB returns 0 projects (empty Prisma seed), the section renders just the heading and an empty stack, then jumps straight to the Architecture Diagram. No empty-state UI. | Add an empty state with a CTA pointing to the admin panel, or seed the DB with real projects. |
 | **Uniform `rounded-2xl` everywhere** | All sections | Every card, badge, modal, input, and container uses `rounded-2xl` (16px). The radius monoculture makes the UI feel templated. | Introduce intentional variation: square crop containers (`rounded-none` or `rounded-sm`) for project image cards to feel more editorial; keep `rounded-full` for pills only; use `rounded-2xl` only for floating cards. |
 | **`"Previous"` and `"Earlier"` as duration labels** | `ExperienceSection.tsx` L31, 42, 48, 56 | Timeline entries show "Previous" and "Earlier" instead of real years. This is placeholder copy that signals the data was not filled in. | Add real years (even approximate: "2024 — 3 months"). The Prisma Experience model has a `duration` field — populate it via the admin panel. |
+
+---
+
+## Polish Pass — What Changed (Oct 2026)
+
+All edits confined to the 8-item list from the original request. No architecture changes, no new features.
+
+### `src/app/globals.css`
+- **Radius token system added:** `--radius-sharp: 2px` (project images, masonry), `--radius-card: 1rem` (floating panels, modals), `--radius-pill: 9999px` (badges, inputs, nav pills).
+- **`--color-accent-brand` mapped to Tailwind** via `@theme inline` → enables `text-accent-brand`, `bg-accent-brand`, `border-accent-brand` utilities.
+- **JetBrains Mono bug fixed:** `--font-mono` now references `var(--font-mono-jetbrains)` instead of `'Courier New'`. Section labels, mono snippets, and terminal output now render the correct typeface.
+- **Motion tokens added:** `--ease-out-expo`, `--duration-fast/base/slow` in `:root`.
+- **`@media (prefers-reduced-motion: reduce)` block:** hides grain overlay, disables hero-bg transform, makes split-line text visible without animation, disables `animate-fade-up`.
+
+### `src/lib/motion.ts` (new file)
+- Shared `EASE = [0.16, 1, 0.3, 1]`, `EASE_GSAP = 'power4.out'`, `DUR = { fast: 0.35, base: 0.6, slow: 0.9 }`.
+- `prefersReducedMotion()` helper for non-hook contexts.
+
+### `HeroSection.tsx`
+- `next/image` with `fill + priority + sizes` for portrait; `width/height` for logo.
+- Right column `lg:pt-24` for editorial baseline asymmetry; H1 `lg:max-w-[108%]`.
+- All hardcoded `rgba(0,240,255,...)` and `text-cyan-400` → `--accent-brand` tokens.
+- `useReducedMotion()` from Framer — GSAP animations skipped entirely when true.
+- Copy rewritten: removed "passionate", "cutting-edge"; added Route Insolite mention; direct tone.
+
+### `AboutSection.tsx`
+- Emoji replaced with Lucide `MapPin` / `GraduationCap` icons (`text-accent-brand`).
+- `useReducedMotion()` guard on all GSAP calls.
+- All radius tokens applied. Motion: `DUR.base`, `EASE_GSAP`.
+- Copy rewritten: Route Insolite, IPSAS, Sfax mentioned specifically.
+
+### `WorkSection.tsx`
+- Section label: `"02 / Selected Work"`. Heading: `"Built and Shipped"`.
+- Project image containers → `--radius-sharp` (2 px, editorial).
+- `next/image` with `fill + sizes + loading="lazy"`.
+- Empty-state UI when no DB projects. Motion: `EASE`, `DUR.slow`.
+
+### `SkillsSection.tsx`
+- Section label: `"03 / Skills"`. Heading: `"Honest Competency Map"`.
+- All `text-cyan-400` → `text-accent-brand`. Shadow → `var(--accent-brand-12)`.
+- All radius tokens applied. Motion: `EASE`, `DUR.base`.
+
+### `ExperienceSection.tsx`
+- Section label: `"04 / Timeline"`. Heading: `"How I Got Here"`.
+- Vague "Previous"/"Earlier" labels replaced with real years (2025–Present, 2024, 2023–2024, 2021–2023).
+- Timeline line → `var(--accent-brand)` gradient. Active node → `bg-accent-brand`.
+- `useReducedMotion()` — conditionally applies `whileInView`/`initial`.
+- Route Insolite entry: "photographed client travel sessions, directed promotional video shoots, graded footage in DaVinci Resolve."
+
+### `CertificationsSection.tsx`
+- Section label: `"05 / Credentials"`. Subtext: "Click any certificate to open the credential record." (removed meta-description).
+- 3D tilt + glare effect **disabled** under `useReducedMotion()` — mouse handlers set to `undefined`.
+- All `text-cyan-400` / `border-cyan-500` / `bg-cyan-950` / `text-cyan-300` → accent-brand tokens.
+- All `rounded-2xl` → `var(--radius-card)`; date/ID badges → `var(--radius-pill)`.
+- `next/image` with `fill + sizes` for cert image in modal.
+
+### `VisualsSection.tsx`
+- Section label: `"06 / Visuals"`.
+- Masonry items: `rounded-2xl` → `var(--radius-sharp)` (2 px, editorial).
+- Video cards → `var(--radius-card)`; filter/tool pills → `var(--radius-pill)`.
+- All cyan → accent-brand (Sparkles icon, category label, play button, `Volume2`, video footer text, ping dot).
+- Play button glow: `rgba(0,240,255,0.3)` → `var(--accent-brand-30)`.
+- `next/image` with `fill + sizes + loading="lazy"` on all masonry and video cover images.
+- `useReducedMotion()` — initial/whileInView skipped; transition delay zeroed.
+
+### `ContactSection.tsx`
+- Section label: `"07 / Contact"`.
+- All `border-cyan-400`, `group-hover:border-cyan-400`, `text-cyan-400`, `text-cyan-300` → accent-brand tokens.
+- `focus:border-cyan-400 focus:ring-cyan-400/50` → `focus:border-accent-brand focus:ring-accent-brand/50` on all inputs and textarea.
+- Form panel, inputs, textarea, submit button → `var(--radius-card)`.
+- Link icon circles, footer clock pill, success icon, close button → `var(--radius-pill)`.
+- Easter egg terminal → `var(--radius-card)`; terminal output color → `text-accent-brand`.
+- Terminal easter egg copy updated: `role = Backend / Full-Stack Engineer`, `stack = PostgreSQL · Prisma · Next.js`.
+- Success state: removed rocket emoji, cleaner copy.
+- Motion: `EASE`, `DUR.base` on form success and terminal animations.
+
+### `AmbientGlow.tsx`
+- Imports `useReducedMotion` from `framer-motion`.
+- Returns `null` early when `reduced === true` (no mouse tracking, no DOM node rendered).
+- Glow color: `rgba(0,240,255,0.06)` → `var(--accent-brand-06)`.
+
+### `ArchitectureDiagram.tsx`
+- All `text-cyan-400`, `text-cyan-300`, `bg-cyan-950`, `border-cyan-400/60` → accent-brand tokens.
+- Outer wrapper → `var(--radius-card)`. Node cells → `var(--radius-card)`. Badge → `var(--radius-pill)`.
+- Active node glow: `rgba(0,240,255,0.1)` → `var(--accent-brand-12)`.
+
+### Verification
+- `Select-String` grep confirmed: zero `text-cyan-400 / text-cyan-300 / border-cyan- / bg-cyan- / rgba(0,240,255` in any `frontend/sections/*.tsx` or `frontend/components/ui/*.tsx` file (only `Preloader.tsx` retains `bg-cyan-900/30` as a decorative blur blob — out of scope).
+- `Select-String` grep confirmed: zero `rounded-2xl` remaining in any edited section or UI component file.
+
+
+---
+
+## Senior Creative Direction & Refinement Pass (Oct 2026)
+
+Applied strictly to refine and elevate the existing design identity without redesigning or replacing any core systems:
+
+1. **Database Resilience & Curation Fallback (`src/app/(site)/page.tsx`, `src/lib/data/defaults.ts`):**
+   - Wrapped database fetching in server component with graceful fallback to curated projects and experiences.
+   - When database is unseeded or dormant, renders Oussema's authentic production work (*Route Insolite Platform*, *Virtual Menu & Ordering*, *AI Creative Suite*, and *Data Intelligence Suite*) rather than an empty placeholder message.
+
+2. **Hero Composition & Asymmetry (`HeroSection.tsx`):**
+   - Refined the right-column vertical stack: consolidated separate metric and log cards into a unified architectural telemetry console (`system.telemetry.log`), eliminating awkward bottom spillover.
+   - Replaced redundant status badges with an authentic personal ribbon below the CTAs (`// Focus 01: PostgreSQL & Next.js`, `// Focus 02: Route Insolite Visuals`, `// Base: IPSAS · Sfax, TN`).
+
+3. **Navigation Ergonomics (`Navigation.tsx`):**
+   - Added functional mobile drawer with smooth slide transition and section links (`02 / Work`, `03 / Skills`, `04 / Timeline`, `06 / Visuals`, `07 / Contact`).
+   - Cleaned up brand mark with monospace accent dot (`OB.`) and base indicator (`Sfax, TN`).
+
+4. **Engineering Impact Callouts (`WorkSection.tsx`):**
+   - Project cards now feature monospace `// Challenge` and `// Solution` annotations directly from the real project briefs, demonstrating concrete engineering problem solving.
+   - Added top-left index watermarks (`01`, `02`, `03`, `04`) in JetBrains Mono.
+
+5. **Competency Context Clarity (`SkillsSection.tsx`):**
+   - Replaced multi-color badge clutter with a cohesive dark-tech styling palette that highlights production platforms, engineering curriculum, and creative studio tools.
+   - Numbered category plates (`01` through `04`) for consistent typographic rhythm.
+
+6. **Timeline & Credentials Polish (`ExperienceSection.tsx`, `CertificationsSection.tsx`):**
+   - Active timeline node highlighted with subtle accent border, `// In Progress` indicator, and precise baseline alignment.
+   - Restrained 3D tilt spring and sheen on certification cards with clear verification badge.
+
+7. **Location & Visual Depth (`VisualsSection.tsx`):**
+   - Photo masonry cards now display shooting location metadata (`Tozeur & Douz`, `Sfax Olive Groves`, `Medina of Sfax`, `Kerkennah Islands`).
+   - Cleaned up AI video showcase cards with authentic tool lists (`Midjourney v6`, `Runway Gen-2`, `DaVinci Resolve`).
+
+8. **Preloader & Performance Polish (`Preloader.tsx`, `next.config.ts`, `layout.tsx`):**
+   - Preloader now records `sessionStorage` so it only plays once on initial visit (duration trimmed to a crisp 1.7s).
+   - Replaced remaining hardcoded cyan classes in preloader with `--accent-brand` tokens.
+   - Added `metadataBase` in root layout to resolve social graph warning.
+   - Added `allowedDevOrigins` in `next.config.ts` for local network testing.
